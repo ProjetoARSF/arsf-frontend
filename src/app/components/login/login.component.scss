@@ -1,4 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+:host ::ng-deep {
+
+    app-header .header {
+
+        border-top-left-radius: 16px;
+
+        border-top-right-radius: 16px;
+
+    }
+
+}
 
 .section__login {
     width: 100vw;
@@ -11,14 +23,6 @@
 .container {
     width: 544px;
     margin: 0 auto;
-}
-
-.header {
-    width: 100%;
-    text-align: right;
-    background-color: black;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
 }
 
 .login {
@@ -39,7 +43,7 @@
 
     .label__text {
         font-family: 'Roboto', sans-serif;
-        font-weight: 300;
+        font-weight: 400;
     }
 
     .label__input {
@@ -48,17 +52,22 @@
         padding: 5px;
         margin-top: 5px;
         background: #FCFCFC;
+        border: none;
     }
 
 
 }
 
 .wrapper__senha {
-    width: 100%;
-    text-align: center;
+    width: 200px;
+    text-align: right;
+
 
     .senha {
         text-align: center;
+        display: inline-block;
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
     }
 }
 
@@ -69,5 +78,6 @@
     background: #FDFAFA;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     margin-top: 44px;
+    border: none;
 
 }
