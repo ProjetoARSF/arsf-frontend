@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { SiteMenuComponent } from './components/shared/site-menu/site-menu.component';
+import { CargaEtlComponent } from './components/carga-etl/carga-etl.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SiteMenuComponent } from './components/shared/site-menu/site-menu.compo
     LoginComponent,
     HomeComponent,
     HeaderComponent,
-    SiteMenuComponent
+    SiteMenuComponent,
+    CargaEtlComponent
   ],
   imports: [
     BrowserModule,
