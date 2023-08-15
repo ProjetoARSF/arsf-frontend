@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { SiteMenuComponent } from './components/shared/site-menu/site-menu.component';
 import { CargaEtlComponent } from './components/carga-etl/carga-etl.component';
+import { AnaliseRiscoComponent } from './components/analise-risco/analise-risco.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CargaEtlComponent } from './components/carga-etl/carga-etl.component';
     HomeComponent,
     HeaderComponent,
     SiteMenuComponent,
-    CargaEtlComponent
+    CargaEtlComponent,
+    AnaliseRiscoComponent
   ],
   imports: [
     BrowserModule,

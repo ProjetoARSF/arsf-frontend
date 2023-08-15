@@ -1,0 +1,44 @@
+.title {
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+.form__label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    .label__text {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+    }
+    .label__input {
+        width: 200px;
+        height: 25px;
+        padding: 5px;
+        margin-top: 5px;
+        background: #FCFCFC;
+        border: none;
+        display: inline-block;
+    }
+
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+
+    .content__button {
+        padding: 10px;
+        width: 120px;
+        background-color: #202020;
+        color: #d9d9d9;
+        border: none;
+        margin-top: 80px;
+        margin-right: 70px;
+        margin-left: 70px;
+
+    }
+}
