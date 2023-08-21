@@ -6,6 +6,7 @@
                 <span class="label__text">Aplicação</span>
                 <select id="aplicacao" name="aplicacao" class="label__input">
                     <option value="" selected hidden>Selecione uma aplicação</option>
+                    <option *ngFor="let aplicacao of aplicacoes" [value]="aplicacao.id">{{ aplicacao.name }}</option>
                 </select>
             </label>
             <label class="form__label" for="descricao">
@@ -17,9 +18,40 @@
     <div class="wrapper__result">
         <h2>Resultado da Análise</h2>
         <div class="result">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus asperiores, inventore, cupiditate
-            laboriosam unde nulla animi officia eos illo delectus error praesentium perferendis incidunt dolorem ipsa
-            debitis nisi quisquam ipsam!
+           <table>
+            <thead> 
+            <tr> 
+                <th> 
+                    ID
+                </th>
+                <th> 
+                    Nome
+                </th>
+                 <th> 
+                    Risco
+                </th>
+                <th> 
+                    Descrição
+                </th>
+            </tr>
+               </thead>
+               <tbody> 
+                <tr> 
+                    <td>
+                        002
+                    </td>
+                    <td> 
+                        João Costa
+                    </td>
+                    <td> 
+                        001
+                    </td>
+                    <td> 
+                        Possibilidade de alteração do Livro Fiscal após divulgação do mesmo, podendo gerar fraude contábil
+                    </td>
+                </tr>
+               </tbody>
+           </table> 
         </div>
     </div>
     <div class="content">
