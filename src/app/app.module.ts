@@ -25,7 +25,6 @@ import { AnaliseRiscoComponent } from './components/analise-risco/analise-risco.
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]

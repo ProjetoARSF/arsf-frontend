@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AplicacaoService, Application } from 'src/app/services/aplicacao/aplicacao.service';
+import { ApplicationModel } from 'src/app/shared/models/application.model';
+import { ApplicationService } from 'src/app/shared/services/application.service';
+
 
 @Component({
   selector: 'app-analise-risco',
@@ -8,13 +10,21 @@ import { AplicacaoService, Application } from 'src/app/services/aplicacao/aplica
 })
 export class AnaliseRiscoComponent implements OnInit {
 
-  protected aplicacoes: Array<Application> = [];
+  protected aplicacoes: Array<ApplicationModel> = new Array<ApplicationModel>();
+  protected descricaoAplicacao: string = '';
 
-  constructor(private applicationService: AplicacaoService) { }
+  constructor(
+    private applicationService: ApplicationService
+  ) { }
 
   ngOnInit(): void {
-    this.applicationService.getApplicatations().subscribe(aplicacao => {
-      this.aplicacoes.push(aplicacao);
-    });
+    this.aplicacoes = this.applicationService.getApplicatations();
+  }
+
+  onChangeApplication(event: Event) : void {
+    const target: Element = event.target as Element;
+    const value: number = Number(target.getAttribute('value'));
+
+    this.descricaoAplicacao = this.aplicacoes.at(value).getAppName();
   }
 }
