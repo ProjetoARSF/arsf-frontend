@@ -12,6 +12,7 @@ import { SiteMenuComponent } from './components/shared/site-menu/site-menu.compo
 import { CargaEtlComponent } from './components/carga-etl/carga-etl.component';
 import { AnaliseRiscoComponent } from './components/analise-risco/analise-risco.component';
 import { AuthGuard, LoginService, SessionService } from './core';
+import { PerfilXFuncionalidadeComponent } from './components/perfil-x-funcionalidade/perfil-x-funcionalidade.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AuthGuard, LoginService, SessionService } from './core';
     HeaderComponent,
     SiteMenuComponent,
     CargaEtlComponent,
-    AnaliseRiscoComponent
+    AnaliseRiscoComponent,
+    PerfilXFuncionalidadeComponent
   ],
   imports: [
     BrowserModule,

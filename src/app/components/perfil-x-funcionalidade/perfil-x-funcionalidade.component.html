@@ -1,0 +1,14 @@
+<section>
+    <h1 class="title"> Perfil X Funcionalidade</h1>
+    <form class="risk-analysis">
+        <div class="form-element">
+            <label class="form-element__label" for="descricao">Aplicação</label>
+            <select #applicationSelect id="descricao" name="descricao" class="form-element__select"
+                (change)="onChangeApplication(applicationSelect.value)">
+                <option value="" selected hidden>Selecione uma aplicação</option>
+                <option *ngFor="let application of applications; let i = index" [value]="i">{{application.getIdApp()}}
+                </option>
+            </select>
+        </div>
+    </form>
+</section>

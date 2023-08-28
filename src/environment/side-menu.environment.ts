@@ -1,6 +1,7 @@
 import { Type } from "@angular/core";
 import { AnaliseRiscoComponent } from "src/app/components/analise-risco/analise-risco.component";
 import { CargaEtlComponent } from "src/app/components/carga-etl/carga-etl.component";
+import { PerfilXFuncionalidadeComponent } from "src/app/components/perfil-x-funcionalidade/perfil-x-funcionalidade.component";
 
 export interface SideMenuOption {
   index?: number,
@@ -19,7 +20,7 @@ export const SIDE_MENU_OPTIONS: Array<SideMenuOption> = [
   { label: 'Funcionalidades', urlLabel: 'funcionalidades', component: null },
   { label: 'Grupo de Perfis', urlLabel: 'grupos-de-perfis', component: null },
   { label: 'Permissões', urlLabel: 'permissoes', component: null },
-  { label: 'Perfil x Funcionalidades', urlLabel: 'perfil-x-funcionalidades', component: null },
+  { label: 'Perfil x Funcionalidades', urlLabel: 'perfil-x-funcionalidades', component: PerfilXFuncionalidadeComponent },
   { label: 'Usuário X Perfis', urlLabel: 'usuario-x-perfis', component: null },
   { label: 'Usuário x Grupo de Perfis', urlLabel: 'usuario-x-grupo-de-perfis', component: null },
   { label: 'Grupo de Perfil x Perfil', urlLabel: 'grupo-de-perfil-x-perfil', component: null },
