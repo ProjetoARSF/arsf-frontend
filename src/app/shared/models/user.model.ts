@@ -30,19 +30,19 @@ export class UserModel {
     return this.userPassword;
   }
 
-  public setIdUser(): void {
-    this.idUser;
+  public setIdUser(idUser: string): void {
+    this.idUser = idUser;
   }
 
-  public setUserName(): void {
-    this.userName;
+  public setUserName(userName: string): void {
+    this.userName = userName;
   }
 
-  public setUserEmail(): void {
-    this.userEmail;
+  public setUserEmail(userEmail: string): void {
+    this.userEmail = userEmail;
   }
 
-  public setUserPassword(): void {
-    this.userPassword;
+  public setUserPassword(userPassword: string): void {
+    this.userPassword = userPassword;
   }
 }

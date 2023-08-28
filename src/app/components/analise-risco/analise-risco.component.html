@@ -1,20 +1,23 @@
 <section>
   <h1 class="title"> Análise de Risco</h1>
-  <div class="wrapper__form">
-    <form class="risk-analysis">
-      <label class="form__label" for="aplicacao">
-        <span class="label__text">Aplicação</span>
-        <select id="aplicacao" name="aplicacao" class="label__input" (change)="onChangeApplication($event)">
-          <option value="" selected hidden>Selecione uma aplicação</option>
-          <option *ngFor="let aplicacao of aplicacoes; let i = index" [value]="i">{{aplicacao.getIdApp()}}</option>
-        </select>
-      </label>
-      <label class="form__label" for="descricao">
-        <span class="label__text">Descrição</span>
-        <input class="label__input" type="text" id="descricao" name="descricao" [value]="descricaoAplicacao" readonly >
-      </label>
-    </form>
-  </div>
+
+  <form class="risk-analysis">
+    <div class="form-element">
+      <label class="form-element__label" for="descricao">Aplicação</label>
+      <select #applicationSelect id="descricao" name="descricao" class="form-element__select"
+        (change)="onChangeApplication(applicationSelect.value)">
+        <option value="" selected hidden>Selecione uma aplicação</option>
+        <option *ngFor="let application of applications; let i = index" [value]="i">{{application.getIdApp()}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-element">
+      <label class="form-element__label" for="descricao">Descrição</label>
+      <input class="form-element__input" type="text" id="descricao" name="descricao" [value]="description" disabled>
+    </div>
+  </form>
+
   <div class="wrapper__result">
     <h2>Resultado da Análise</h2>
     <div class="result">

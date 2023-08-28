@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RepositoryConstants } from './repository.constants';
 import { RiskModel } from '../models/risk.model';
 
 @Injectable({
@@ -9,7 +8,7 @@ import { RiskModel } from '../models/risk.model';
 })
 export class RiskAnalysisRepository {
 
-  private readonly serviceMapping: string = '/riskanalysis';
+  private readonly serviceMapping: string = '/arsf/riskanalysis';
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +21,7 @@ export class RiskAnalysisRepository {
     if (appId == null) { appId = ''; }
     appId = encodeURIComponent(appId);
 
-    const uri = `${RepositoryConstants.BASE_URL}${this.serviceMapping}/user/${appId}`;
+    const uri = `${this.serviceMapping}/user/${appId}`;
     return this.http.get<Array<RiskModel>>(uri);
   }
 
@@ -35,7 +34,7 @@ export class RiskAnalysisRepository {
     if (appId == null) { appId = ''; }
     appId = encodeURIComponent(appId);
 
-    const uri = `${RepositoryConstants.BASE_URL}${this.serviceMapping}/role/${appId}`;
+    const uri = `${this.serviceMapping}/role/${appId}`;
     return this.http.get<Array<RiskModel>>(uri);
   }
 
@@ -48,7 +47,7 @@ export class RiskAnalysisRepository {
     if (appId == null) { appId = ''; }
     appId = encodeURIComponent(appId);
 
-    const uri = `${RepositoryConstants.BASE_URL}${this.serviceMapping}/group/${appId}`;
+    const uri = `${this.serviceMapping}/group/${appId}`;
     return this.http.get<Array<RiskModel>>(uri);
   }
 }

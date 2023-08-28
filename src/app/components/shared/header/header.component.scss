@@ -1,6 +1,7 @@
+@import 'src/assets/styles/variables.styles.scss';
+
 .header {
-    width: 100%;
-    text-align: right;
-    background-color: #202020;
-    .header__logo {margin: 0 16px;}
+  width: 100%;
+  text-align: right;
+  background-color: $header-background;
 }

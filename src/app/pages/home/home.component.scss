@@ -1,0 +1,22 @@
+:host {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.home {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+
+  &__menu {}
+
+  &__content {
+    width: 100%;
+    padding: 36px;
+    overflow: auto;
+  }
+}

@@ -10,21 +10,18 @@ import { ApplicationService } from 'src/app/shared/services/application.service'
 })
 export class AnaliseRiscoComponent implements OnInit {
 
-  protected aplicacoes: Array<ApplicationModel> = new Array<ApplicationModel>();
-  protected descricaoAplicacao: string = '';
+  protected applications: Array<ApplicationModel> = new Array<ApplicationModel>();
+  protected description: string = '';
 
   constructor(
     private applicationService: ApplicationService
   ) { }
 
   ngOnInit(): void {
-    this.aplicacoes = this.applicationService.getApplicatations();
+    this.applications = this.applicationService.getApplicatations();
   }
 
-  onChangeApplication(event: Event) : void {
-    const target: Element = event.target as Element;
-    const value: number = Number(target.getAttribute('value'));
-
-    this.descricaoAplicacao = this.aplicacoes.at(value).getAppName();
+  onChangeApplication(value: string): void {
+    this.description = this.applications.at(Number(value)).getAppName();
   }
 }

@@ -1,0 +1,41 @@
+@import 'variables.styles.scss';
+
+$default-form-element-border: 1px solid #696969;
+$default-form-element-padding: 8px 5px;
+
+$default-form-disabled-background: #D9D9D9;
+
+input,
+select,
+button {
+  outline: none;
+}
+
+.form-element {
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  margin-bottom: 16px;
+
+  &__label {
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 4px;
+  }
+
+  &__input {
+    width: 100%;
+    border: $default-form-element-border;
+    padding: $default-form-element-padding;
+  }
+
+  &__select {
+    width: 100%;
+    border: $default-form-element-border;
+    padding: $default-form-element-padding;
+  }
+
+  &>[disabled] {
+    background-color: $default-form-disabled-background;
+  }
+}

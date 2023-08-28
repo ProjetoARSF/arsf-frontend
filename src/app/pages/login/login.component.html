@@ -1,0 +1,25 @@
+<div class="container">
+  <app-header [height]="headerHeight"></app-header>
+
+  <form id="formLogin" class="login" (submit)="onLoginClick($event)">
+    <div class="form-element">
+      <label class="form-element__label" for="username">Usuário</label>
+      <input id="username" class="form-element__input" name="username" type="text" [(ngModel)]="username">
+    </div>
+
+    <div class="form-element">
+      <label class="form-element__label" for="password">Senha</label>
+      <input id="password" class="form-element__input" name="password" type="password" [(ngModel)]="password">
+    </div>
+
+    <div class="forgot-password__wrapper">
+      <a class="forgot-password" (click)="onForgotPasswordClick($event)">
+        <span>Esqueceu a senha?<br>Clique aqui</span>
+      </a>
+    </div>
+
+    <div class="login-button__wrapper">
+      <button class="button button--black" type="submit">Login</button>
+    </div>
+  </form>
+</div>

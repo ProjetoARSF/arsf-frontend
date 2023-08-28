@@ -1,12 +1,12 @@
-<aside class="side-menu">
-    <div class="side-menu__option" *ngFor="let option of options">
-        <button class="side-menu__button" type="button">
-            {{option}}
-        </button>
-    </div>
-    <div class="side-menu__option">
-        <button class="side-menu__button side-menu__button--sair" type="button">
-            Sair
-        </button>
-    </div>
-</aside>
+<section class="side-menu" [style]="{width: componentWidth + 'px'}">
+  <div class="side-menu__option" *ngFor="let option of options; let i = index">
+    <button class="button roboto" type="button" (click)="onOptionClick($event)" [attr.value]="i">
+      {{option.label}}
+    </button>
+  </div>
+  <div class="side-menu__option">
+    <button class="button roboto" type="button" (click)="onClickLogout($event)">
+      Sair
+    </button>
+  </div>
+</section>

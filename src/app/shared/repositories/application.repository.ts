@@ -2,14 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApplicationModel } from 'src/app/shared/models/application.model';
-import { RepositoryConstants } from './repository.constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApplicationRepository {
 
-  private readonly serviceMapping: string = '/app';
+  private readonly serviceMapping: string = '/arsf/app';
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +17,7 @@ export class ApplicationRepository {
    * @returns Lista com todas as aplicações cadastradas no sistema
    */
   public getApplicatations(): Observable<Array<ApplicationModel>> {
-    const uri = `${RepositoryConstants.BASE_URL}${this.serviceMapping}`;
+    const uri = `${this.serviceMapping}`;
     return this.http.get<Array<ApplicationModel>>(uri);
   }
 
@@ -34,7 +33,7 @@ export class ApplicationRepository {
 
     appId = encodeURIComponent(appId);
 
-    const uri = `${RepositoryConstants.BASE_URL}${this.serviceMapping}/${appId}`;
+    const uri = `${this.serviceMapping}/${appId}`;
     return this.http.get<ApplicationModel>(uri);
   }
 }

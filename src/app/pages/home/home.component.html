@@ -1,0 +1,9 @@
+<app-header [height]="headerHeight"></app-header>
+<section class="home">
+  <div class="home__menu">
+    <app-site-menu (onOptionChange)="changeWindow($event)"></app-site-menu>
+  </div>
+  <div class="home__content">
+    <ng-template #content></ng-template>
+  </div>
+</section>

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { SIDE_MENU_WIDTH } from '@environment/environment';
+import { SIDE_MENU_OPTIONS, SideMenuOption } from '@environment/side-menu.environment';
+import { SessionService } from 'src/app/core';
 
 @Component({
   selector: 'app-site-menu',
@@ -7,10 +10,23 @@ import { Component } from '@angular/core';
 })
 export class SiteMenuComponent {
 
-  options: Array<string> = [
-    'Inicío', 'Aplicação', 'Perfil', 'Cadastro Usuário ARSF', 'Cadastro Usuário Aplicações', 'Gestores', 
-    'Funcionalidades', 'Grupo de Perfis', 'Permissões', 'Perfil x Funcionalidades', 'Usuário X Perfis', 
-    'Usuário x Grupo de Perfis', 'Grupo de Perfil x Perfil', 'Matriz de Risco', 'Análise de Risco', 'Relatório de Usuários', 
-    'Relatório dos Perfis', 'Carga de Dados ETL'
-  ]
+  @Output() onOptionChange: EventEmitter<any> = new EventEmitter<any>();
+
+  protected componentWidth: number = SIDE_MENU_WIDTH;
+  protected options: Array<SideMenuOption> = SIDE_MENU_OPTIONS;
+
+  constructor(
+    private sessionService: SessionService
+  ) { }
+
+  protected onOptionClick(event: Event): void {
+    const target: HTMLButtonElement = event.target as HTMLButtonElement;
+    const value: number = Number(target.getAttribute('value'));
+
+    this.onOptionChange.emit(value);
+  }
+
+  protected onClickLogout(event: Event): void {
+    this.sessionService.destroySession();
+  }
 }

@@ -1,28 +1,19 @@
+@import 'src/assets/styles/variables.styles.scss';
+
 .side-menu {
-  width: 240px; 
   height: 100%;
-  background-color: #d9d9d9;
+  background-color: $side-menu-background;
+  overflow: hidden auto;
 
-  .side-menu__option {
+  &__option {
     width: 100%;
-
   }
-.side-menu__button {
-    background-color: transparent;
-    border: none;
-    text-align: center;
-    width: 100%;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    padding: 10px;
+
+  .button {
+    background-color: rgba(0, 0, 0, 0);
 
     &:hover {
-        background-color: rgba(0,0,0, .1);
+      background-color: rgba(0, 0, 0, .1);
     }
+  }
 }
-.side-menu__button--sair {
-       padding: 18px;
-}
-}
-

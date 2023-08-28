@@ -7,8 +7,6 @@ import { ApplicationRepository } from '../repositories/application.repository';
 })
 export class ApplicationService {
 
-  private readonly serviceMapping: string = '/app';
-
   constructor(private repository: ApplicationRepository) { }
 
   public getApplicatations(): Array<ApplicationModel> {
