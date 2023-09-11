@@ -1,0 +1,29 @@
+<div class="form-element">
+  <label class="form-element__label" [for]="leftSelectId()">{{label}}</label>
+  <select #leftOptionsRef [id]="leftSelectId()" [name]="leftSelectId()" class="form-element__select" multiple size="10"
+    [disabled]="disabled">
+    <option *ngFor="let option of leftOptions; let i = index" [ngValue]="option">
+      {{option?.getOptionText()}}
+    </option>
+  </select>
+</div>
+
+<div class="buttons">
+  <button class="button button--black" type="button" (click)="onClickAddRight(leftOptionsRef)" [disabled]="disabled">
+    <fa-icon class="button__icon" [icon]="['fas', 'chevron-right']"></fa-icon>
+  </button>
+  <button class="button button--black" type="button" (click)="onClickAddLeft(rightOptionsRef)" [disabled]="disabled">
+    <fa-icon class="button__icon" [icon]="['fas', 'chevron-left']"></fa-icon>
+  </button>
+</div>
+
+<div class="form-element">
+  <label class="form-element__label" [for]="rightSelectId()">{{label}}</label>
+  <select #rightOptionsRef [id]="rightSelectId()" [name]="rightSelectId()" class="form-element__select" multiple
+    size="10" [disabled]="disabled">
+    <option *ngFor="let option of rightOptions; let i = index" [ngValue]="option"
+      (click)="onClickRightOption($event, rightOptionsRef)" (mouseup)="onClickRightOption($event, rightOptionsRef)">
+      {{option?.getOptionText()}}
+    </option>
+  </select>
+</div>

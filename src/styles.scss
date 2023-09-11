@@ -29,3 +29,8 @@ button {
   margin: 0 auto;
   padding: 0 2%;
 }
+
+.container--arsf {
+  max-width: unset;
+  background-color: $container-background;
+}

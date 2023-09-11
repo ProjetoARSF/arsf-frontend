@@ -13,7 +13,13 @@ import { CargaEtlComponent } from './components/carga-etl/carga-etl.component';
 import { AnaliseRiscoComponent } from './components/analise-risco/analise-risco.component';
 import { AuthGuard, LoginService, SessionService } from './core';
 import { PerfilXFuncionalidadeComponent } from './components/perfil-x-funcionalidade/perfil-x-funcionalidade.component';
+import { ModalComponent } from './components/shared/modal/modal.component';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { DualSelectComponent } from './components/shared/dual-select/dual-select.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +30,16 @@ import { PerfilXFuncionalidadeComponent } from './components/perfil-x-funcionali
     SiteMenuComponent,
     CargaEtlComponent,
     AnaliseRiscoComponent,
-    PerfilXFuncionalidadeComponent
+    PerfilXFuncionalidadeComponent,
+    ModalComponent,
+    DualSelectComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    FontAwesomeModule,
   ],
   providers: [
     AuthGuard,
@@ -39,4 +48,8 @@ import { PerfilXFuncionalidadeComponent } from './components/perfil-x-funcionali
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fab, far, fas);
+  }
+}

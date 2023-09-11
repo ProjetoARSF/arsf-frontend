@@ -1,8 +1,16 @@
 <section class="carga-etl">
   <h1 class="title roboto">Executar Carga ETL</h1>
 
+  <div class="carga-etl__status">
+    <div [ngSwitch]="status">
+      <span *ngSwitchCase="1" class="roboto status status--success">Sucesso ao Executar</span>
+      <span *ngSwitchCase="-1" class="roboto status status--failed">Falha ao Executar</span>
+      <span *ngSwitchDefault=""></span>
+    </div>
+  </div>
+
   <div class="carga-etl__buttons">
-    <button class="button button--black" type="button">Confirmar</button>
-    <button class="button button--black" type="button">Sair</button>
+    <button #confirmButton class="button button--black" type="button" (click)="execute()">Confirmar</button>
+    <button class="button button--black" type="button" (click)="exit()">Sair</button>
   </div>
 </section>

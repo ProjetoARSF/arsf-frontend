@@ -1,65 +1,36 @@
-.title {
-    font-size: 30px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    line-height: normal;
-    text-align: center;
-}
-
-.wrapper__form {
-  margin-top: 32px;
-}
-
-.form__label {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 24px;
-    .label__text {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 400;
-    }
-    .label__input {
-        width: 200px;
-        height: 25px;
-        padding: 5px;
-        margin-top: 5px;
-        background: #FCFCFC;
-        border: none;
-        display: inline-block;
-    }
-
-}
-
-.wrapper__result {
-  width: 100%;
-  background-color: #D9D9D9;
-  padding: 32px;
-
-  h2 {
-    font-size: 18px;
-    margin-bottom: 12px;
+.analise-risco {
+  .title {
+    margin-bottom: 32px;
   }
 
-  .result {
-    background-color: #FCFCFC;
-  }
-
-
-}
-
-.content {
-    display: flex;
+  &__buttons {
+    display: grid;
+    grid-template-areas: 'confirm none exit';
+    grid-template-columns: 170px 100px 170px;
     justify-content: center;
+    margin-top: 32px;
 
-    .content__button {
-        padding: 10px;
-        width: 120px;
-        background-color: #202020;
-        color: #d9d9d9;
-        border: none;
-        margin-top: 80px;
-        margin-right: 70px;
-        margin-left: 70px;
+    .button {
+      &:nth-of-type(1) {
+        grid-area: confirm;
+      }
 
+      &:nth-of-type(2) {
+        grid-area: exit;
+      }
     }
+  }
+
+  .container {
+    padding: 32px;
+    margin-top: 32px;
+  }
+
+  &__results {
+    border: black;
+
+    .results__title {
+      color: hsl(0, 0%, 30%);
+    }
+  }
 }

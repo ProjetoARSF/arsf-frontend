@@ -1,0 +1,36 @@
+.role-x-function {
+  .dual-selects {
+    display: grid;
+    grid-template-columns: 2fr 0.5fr 2fr;
+    grid-template-areas: 'left none right';
+
+    &__single {
+
+      :first-of-type {
+        grid-area: left;
+      }
+
+      &:last-of-type {
+        grid-area: right;
+      }
+    }
+  }
+
+  &__buttons {
+    display: grid;
+    grid-template-areas: 'confirm none exit';
+    grid-template-columns: 150px 100px 150px;
+    justify-content: center;
+    margin-top: 32px;
+
+    .button {
+      &:nth-of-type(1) {
+        grid-area: confirm;
+      }
+
+      &:nth-of-type(2) {
+        grid-area: exit;
+      }
+    }
+  }
+}

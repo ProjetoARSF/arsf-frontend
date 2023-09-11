@@ -1,0 +1,14 @@
+<section class="modal roboto">
+  <div class="modal__title">
+    <h1 class="title">{{title}}</h1>
+  </div>
+
+  <div class="modal__message">
+    {{message}}
+  </div>
+
+  <div class="modal__buttons">
+    <button class="button button--black" (click)="onConfirm()">{{confirmLabel}}</button>
+    <button class="button button--black" (click)="onClose()">{{closeLabel}}</button>
+  </div>
+</section>

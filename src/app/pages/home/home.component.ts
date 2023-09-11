@@ -35,7 +35,6 @@ export class HomeComponent implements AfterViewInit {
 
     this.router.navigate(['home', option.urlLabel]);
     this.createComponent(option);
-
   }
 
   private handleUrl(): void {

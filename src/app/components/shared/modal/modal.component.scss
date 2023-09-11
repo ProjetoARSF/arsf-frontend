@@ -1,0 +1,52 @@
+@import 'src/assets/styles/variables.styles.scss';
+
+:host {
+  display: grid;
+  place-items: center;
+  background-color: rgb(0, 0, 0, 0.6);
+
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.modal {
+  width: 450px;
+  background-color: $container-background;
+  border-radius: 16px;
+
+  &__title {
+    background-color: $header-background;
+    color: $header-font;
+    padding: 16px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+
+    .title {
+      text-align: left;
+    }
+  }
+
+  &__message {
+    padding: 16px;
+  }
+
+  &__buttons {
+    display: grid;
+    grid-template-areas: 'confirm none exit';
+    grid-template-columns: 150px 100px 150px;
+    justify-content: center;
+    padding: 16px;
+    margin-bottom: 16px;
+
+    .button {
+      &:nth-of-type(1) {
+        grid-area: confirm;
+      }
+
+      &:nth-of-type(2) {
+        grid-area: exit;
+      }
+    }
+  }
+}

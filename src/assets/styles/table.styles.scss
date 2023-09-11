@@ -1,11 +1,59 @@
-table {
-  width: 100%;
-  border: 1px solid #D4D4D4;
-  border-collapse: collapse;
-  font-size: 18px;
+$head-light-color-0: hsl(0, 0%, 70%);
+$head-light-color-1: hsl(0, 0%, 60%);
+$head-light-color-2: hsl(0, 0%, 60%);
+$head-light-color-3: hsl(0, 0%, 50%);
 
-  tr, th, td {
-    border: 1px solid #D4D4D4;
-    padding: 2px 16px;
+$table-border-color: hsl(0, 0%, 40%);
+$table-font-color: hsl(0, 0%, 20%);
+
+$table-line-color-0: hsl(0, 0%, 90%);
+$table-line-color-1: hsl(0, 0%, 80%);
+
+.table {
+  $table: &;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 32px;
+
+  &__caption {
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  &__row,
+  &__col {
+    border: 1px solid $table-border-color;
+    padding: 6px;
+  }
+
+  &__head {
+    font-size: 18px;
+
+    #{$table}__row {
+      color: $table-font-color;
+      background-image: linear-gradient(180deg, $head-light-color-0, $head-light-color-1);
+
+      &--title {
+        color: $table-font-color;
+        background-image: linear-gradient(180deg, $head-light-color-2, $head-light-color-3);
+      }
+    }
+  }
+
+  &__body {
+    background-color: $table-line-color-0;
+
+    #{$table}__row--dark {
+      background-color: $table-line-color-1;
+    }
+  }
+}
+
+.fieldset {
+  background-color: red;
+
+  .legend {
+    background-color: red;
   }
 }

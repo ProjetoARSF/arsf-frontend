@@ -1,0 +1,29 @@
+:host {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-areas: 'left buttons right';
+}
+
+.form-element {
+
+  margin-bottom: 0;
+
+  &:first-of-type() {
+    grid-area: left;
+  }
+
+  &:last-of-type() {
+    grid-area: right;
+  }
+}
+
+.buttons {
+  margin: 0 32px;
+  align-self: center;
+
+  .button {
+    margin: 8px 0;
+  }
+}
+

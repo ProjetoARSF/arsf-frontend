@@ -22,7 +22,6 @@ export class ApplicationService {
     return applications;
   }
 
-
   public getApplicatation(appId: string): ApplicationModel {
     let application: ApplicationModel = null;
 

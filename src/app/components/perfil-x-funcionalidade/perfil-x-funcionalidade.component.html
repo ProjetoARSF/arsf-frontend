@@ -1,14 +1,46 @@
 <section>
-    <h1 class="title"> Perfil X Funcionalidade</h1>
-    <form class="risk-analysis">
-        <div class="form-element">
-            <label class="form-element__label" for="descricao">Aplicação</label>
-            <select #applicationSelect id="descricao" name="descricao" class="form-element__select"
-                (change)="onChangeApplication(applicationSelect.value)">
-                <option value="" selected hidden>Selecione uma aplicação</option>
-                <option *ngFor="let application of applications; let i = index" [value]="i">{{application.getIdApp()}}
-                </option>
-            </select>
-        </div>
-    </form>
+  <h1 class="title"> Perfil X Funcionalidade</h1>
+  <form class="role-x-function">
+    <div class="form-element">
+      <label class="form-element__label" for="application">Aplicação</label>
+      <select id="application" name="application" class="form-element__select" [(ngModel)]="application"
+        (change)="onChangeApplication()">
+        <option [ngValue]="undefined" selected hidden>Selecione uma aplicação</option>
+        <option *ngFor="let application of applications; let i = index" [ngValue]="application">
+          {{application?.getIdApp()}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-element">
+      <label class="form-element__label" for="role">Perfil</label>
+      <select id="role" name="role" class="form-element__select" [(ngModel)]="role" [disabled]="!application"
+        (change)="onChangeRole()">
+        <option [ngValue]="undefined" selected hidden>Selecione um Perfil</option>
+        <option *ngFor="let role of roles; let i = index" [ngValue]="role">
+          {{role?.getIdRole()}}
+        </option>
+      </select>
+    </div>
+
+    <div class="dual-selects">
+      <div class="dual-selects__single">
+        <app-dual-select id="functions" label="Funcionalidades" [leftOptions]="leftFeatures"
+          [rightOptions]="rightFeatures" [disabled]="!role" (clickAddLeftEvent)="onClickAddLeftFeature($event)"
+          (clickAddRightEvent)="onClickAddRightFeature($event)"
+          (clickRightOptionEvent)="onClickRightFeature($event)"></app-dual-select>
+      </div>
+      <div class="dual-selects__single">
+        <app-dual-select id="permissions" label="Permissões" [leftOptions]="leftPermissions"
+          (clickAddLeftEvent)="onClickAddLeftPermission($event)"
+          (clickAddRightEvent)="onClickAddRightPermission($event)" [rightOptions]="rightPermissions"
+          [disabled]="!rightFeature"></app-dual-select>
+      </div>
+    </div>
+
+    <div class="role-x-function__buttons">
+      <button #confirmButton class="button button--black" type="button" (click)="onExecute()">Confirmar</button>
+      <button class="button button--black" type="button" (click)="onExit()">Sair</button>
+    </div>
+  </form>
 </section>

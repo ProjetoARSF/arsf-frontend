@@ -2,7 +2,7 @@
  * Definições do Session Cookie
  */
 export const SESSION_COOKIE = 'ARSFSESSION';
-export const SESSION_EXPIRATION_TIME = 1000 * 60 * 60 * 2;
+export const SESSION_EXPIRATION_TIME = 1000 * 60 * 60 * 24;
 
 /**
  * Definições de Componentes da Aplicação

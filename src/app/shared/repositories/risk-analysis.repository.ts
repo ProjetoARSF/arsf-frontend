@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { RiskModel } from '../models/risk.model';
 
 @Injectable({
@@ -17,12 +17,12 @@ export class RiskAnalysisRepository {
    * @param appId ID da aplicação a ser pesquisada
    * @returns Lista com todos os riscos da aplicação
    */
-  public getUsersRisk(appId: string): Observable<Array<RiskModel>> {
+  public getUsersRisk(appId: string): Observable<RiskModel> {
     if (appId == null) { appId = ''; }
     appId = encodeURIComponent(appId);
 
     const uri = `${this.serviceMapping}/user/${appId}`;
-    return this.http.get<Array<RiskModel>>(uri);
+    return this.http.get<RiskModel>(uri);
   }
 
   /**
@@ -30,12 +30,12 @@ export class RiskAnalysisRepository {
    * @param appId ID da aplicação a ser pesquisada
    * @returns Lista com todos os riscos da aplicação
    */
-  public getRolesRisk(appId: string): Observable<Array<RiskModel>> {
+  public getRolesRisk(appId: string): Observable<RiskModel> {
     if (appId == null) { appId = ''; }
     appId = encodeURIComponent(appId);
 
     const uri = `${this.serviceMapping}/role/${appId}`;
-    return this.http.get<Array<RiskModel>>(uri);
+    return this.http.get<RiskModel>(uri);
   }
 
   /**
@@ -43,11 +43,11 @@ export class RiskAnalysisRepository {
    * @param appId ID da aplicação a ser pesquisada
    * @returns Lista com todos os riscos da aplicação
    */
-  public getGroupsRisk(appId: string): Observable<Array<RiskModel>> {
+  public getGroupsRisk(appId: string): Observable<RiskModel> {
     if (appId == null) { appId = ''; }
     appId = encodeURIComponent(appId);
 
     const uri = `${this.serviceMapping}/group/${appId}`;
-    return this.http.get<Array<RiskModel>>(uri);
+    return this.http.get<RiskModel>(uri);
   }
 }

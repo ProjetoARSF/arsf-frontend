@@ -4,13 +4,17 @@ $default-background-color: hsl(0, 0%, 80%);
 $default-background-color-hover: hsl(0, 0%, 70%);
 $default-font-color: hsl(0, 0%, 10%);
 
+$disabled-background: hsl(0, 0%, 85%);
+$disbled-border: 1px solid hsl(0, 0%, 70%);
+$disabled-font-color: hsl(0, 0%, 50%);
+
 $black-background-color: hsl(0, 0%, 20%);
 $black-background-color-hover: hsl(0, 0%, 10%);
 $black-font-color: hsl(0, 0%, 90%);
 
 .button {
   width: 100%;
-  border: none;
+  border: 1px solid transparent;
   padding: 8px 32px;
   background-color: $default-background-color;
   color: $default-font-color;
@@ -27,5 +31,12 @@ $black-font-color: hsl(0, 0%, 90%);
     &:hover {
       background-color: $black-background-color-hover;
     }
+  }
+
+  &:disabled {
+    background-color: $disabled-background;
+    border: $disbled-border;
+    color: $disabled-font-color;
+    cursor: default;
   }
 }
