@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, switchMap } from 'rxjs';
+import { Observable, catchError, of, switchMap } from 'rxjs';
 import { PermissionRoleModel } from '../models/permission-role.model';
 import { FeatureModel } from '../models/feature.model';
 import { PermissionModel } from '../models/permission.model';
 import { PermissionService } from './permission.service';
 import { PermissionRoleService } from './permission-role.service';
 import { FeatureRepository } from '../repositories/feature.repository';
+import { PrePermissionRoleModel } from '../models/pre-permission-role.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class RoleXFeatureService {
     private permissionService: PermissionService
   ) { }
 
-  public getFeaturesByRole(appId: string, roleId: string): Observable<Array<Array<FeatureModel>>> {
+  public getFeaturesByRole(appId: string, idRole: string): Observable<Array<Array<FeatureModel>>> {
     let allFeatures = new Array<Array<FeatureModel>>();
     let rightFeatures = new Array<FeatureModel>();
     let leftFeatures = new Array<FeatureModel>();
@@ -27,13 +28,13 @@ export class RoleXFeatureService {
       .pipe(
         switchMap((start) => {
           permissions = permissions.concat(start);
-          return this.permissionRoleService.getPermissionRolesByIdRole(roleId);
+          return this.permissionRoleService.getPermissionRolesByIdRole(idRole);
         })
       )
       .pipe(
         switchMap((permissionRoles) => {
           rightFeatures = this.processRoles(permissionRoles, permissions);
-          return this.permissionRoleService.getPrePermissionRolesByIdRole(roleId);
+          return this.permissionRoleService.getPrePermissionRolesByIdRole(idRole);
         })
       )
       .pipe(
@@ -59,6 +60,10 @@ export class RoleXFeatureService {
 
           allFeatures.push(rightFeatures);
 
+          if (!rightFeatures.length) {
+            return this.featureService.getAllFeatures();
+          }
+
           return this.featureService.returnByAppIdAndFeatureNotInList(appId, rightFeatures);
         })
       ).pipe(
@@ -72,12 +77,23 @@ export class RoleXFeatureService {
               feature.getInactivePermissions().push(permission);
             })
 
+            feature.setIdFeature('*'.concat(feature.getIdFeature()));
+
             leftFeatures.push(feature);
           });
           allFeatures.push(leftFeatures);
           return of(allFeatures);
         })
       );
+  }
+
+  public updateRoleXFeatures(permissionRoles: Array<PermissionRoleModel>, prePermissionRoles: Array<PrePermissionRoleModel>): Observable<boolean> {
+
+    return this.permissionRoleService.updatePermissionRoles(permissionRoles).pipe(
+      switchMap((value) => this.permissionRoleService.updatePrePermissionRoles(prePermissionRoles))
+    ).pipe(
+      switchMap((value) => of(true))
+    );
   }
 
   private processRoles(permissionRoles: Array<PermissionRoleModel>, permissions: Array<PermissionModel>): Array<FeatureModel> {

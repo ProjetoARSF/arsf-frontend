@@ -12,13 +12,18 @@ export class FeatureRepository {
 
   constructor(private http: HttpClient) { }
 
+  public getAllFeatures(): Observable<Array<FeatureModel>> {
+    const uri = `${this.serviceMapping}`;
+    return this.http.get<Array<FeatureModel>>(uri);
+  }
+
   public getFeatureByIdApp(idApp: string): Observable<Array<FeatureModel>> {
     const url = this.serviceMapping.concat('/app', '/', idApp);
     return this.http.get<Array<FeatureModel>>(url);
   }
 
   public returnByAppIdAndFeatureNotInList(idApp: string, idsFeature: Array<FeatureModel>): Observable<Array<FeatureModel>> {
-    const ids = idsFeature.map(feat => feat.getIdFeature());
+    const ids = idsFeature.map(feat => feat.getIdFeature().replace('*', ''));
     const url = this.serviceMapping
       .concat('/featurenotin')
       .concat('?idApp=', idApp)

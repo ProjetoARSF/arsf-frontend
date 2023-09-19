@@ -5,6 +5,7 @@ export class PermissionRoleModel implements Selectable {
   protected idFeature: string = null;
   protected idPermission: string = null;
   protected idRole: string = null;
+  protected needToBeCreated: boolean = false;
 
   constructor();
   constructor(idFeature?: string, idPermission?: string, idRole?: string);
@@ -26,6 +27,10 @@ export class PermissionRoleModel implements Selectable {
     return this.idRole;
   }
 
+  public getNeedToBeCreated(): boolean {
+    return this.needToBeCreated;
+  }
+
   public setIdFeature(idFeature: string): void {
     this.idFeature = idFeature;
   }
@@ -36,6 +41,10 @@ export class PermissionRoleModel implements Selectable {
 
   public setIdRole(idRole: string): void {
     this.idRole = idRole;
+  }
+
+  public setNeedToBeCreated(needToBeCreated: boolean): void {
+    this.needToBeCreated = needToBeCreated;
   }
 
   getOptionId(): string {

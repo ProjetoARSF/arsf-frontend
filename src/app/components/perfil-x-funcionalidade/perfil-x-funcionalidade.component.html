@@ -4,7 +4,7 @@
     <div class="form-element">
       <label class="form-element__label" for="application">Aplicação</label>
       <select id="application" name="application" class="form-element__select" [(ngModel)]="application"
-        (change)="onChangeApplication()">
+        (change)="onChangeApplication()" [disabled]="saving">
         <option [ngValue]="undefined" selected hidden>Selecione uma aplicação</option>
         <option *ngFor="let application of applications; let i = index" [ngValue]="application">
           {{application?.getIdApp()}}
@@ -14,7 +14,7 @@
 
     <div class="form-element">
       <label class="form-element__label" for="role">Perfil</label>
-      <select id="role" name="role" class="form-element__select" [(ngModel)]="role" [disabled]="!application"
+      <select id="role" name="role" class="form-element__select" [(ngModel)]="role" [disabled]="!application || saving"
         (change)="onChangeRole()">
         <option [ngValue]="undefined" selected hidden>Selecione um Perfil</option>
         <option *ngFor="let role of roles; let i = index" [ngValue]="role">
@@ -26,7 +26,7 @@
     <div class="dual-selects">
       <div class="dual-selects__single">
         <app-dual-select id="functions" label="Funcionalidades" [leftOptions]="leftFeatures"
-          [rightOptions]="rightFeatures" [disabled]="!role" (clickAddLeftEvent)="onClickAddLeftFeature($event)"
+          [rightOptions]="rightFeatures" [disabled]="!role || saving" (clickAddLeftEvent)="onClickAddLeftFeature($event)"
           (clickAddRightEvent)="onClickAddRightFeature($event)"
           (clickRightOptionEvent)="onClickRightFeature($event)"></app-dual-select>
       </div>
@@ -34,13 +34,13 @@
         <app-dual-select id="permissions" label="Permissões" [leftOptions]="leftPermissions"
           (clickAddLeftEvent)="onClickAddLeftPermission($event)"
           (clickAddRightEvent)="onClickAddRightPermission($event)" [rightOptions]="rightPermissions"
-          [disabled]="!rightFeature"></app-dual-select>
+          [disabled]="!rightFeature || saving"></app-dual-select>
       </div>
     </div>
 
     <div class="role-x-function__buttons">
-      <button #confirmButton class="button button--black" type="button" (click)="onExecute()">Confirmar</button>
-      <button class="button button--black" type="button" (click)="onExit()">Sair</button>
+      <button #confirmButton class="button button--black" type="button" (click)="onExecute()" [disabled]="saving">Confirmar</button>
+      <button class="button button--black" type="button" (click)="onExit()" [disabled]="saving">Sair</button>
     </div>
   </form>
 </section>

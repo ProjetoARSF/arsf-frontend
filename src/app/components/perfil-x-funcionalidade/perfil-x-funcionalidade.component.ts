@@ -1,9 +1,11 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Selectable } from 'src/app/shared/interfaces/selectable';
 import { ApplicationModel } from 'src/app/shared/models/application.model';
 import { FeatureModel } from 'src/app/shared/models/feature.model';
+import { PermissionRoleModel } from 'src/app/shared/models/permission-role.model';
 import { PermissionModel } from 'src/app/shared/models/permission.model';
+import { PrePermissionRoleModel } from 'src/app/shared/models/pre-permission-role.model';
 import { RoleModel } from 'src/app/shared/models/role.model';
 import { ApplicationService } from 'src/app/shared/services/application.service';
 import { RoleXFeatureService } from 'src/app/shared/services/role-x-feature.service';
@@ -30,10 +32,13 @@ export class PerfilXFuncionalidadeComponent implements OnInit, OnChanges {
   protected leftPermissions: Array<PermissionModel> = new Array<PermissionModel>();
   protected rightPermissions: Array<PermissionModel> = new Array<PermissionModel>();
 
+  protected saving: boolean = false;
+
   constructor(
     private applicationService: ApplicationService,
     private roleService: RoleService,
-    private roleXFeatureService: RoleXFeatureService
+    private roleXFeatureService: RoleXFeatureService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -72,9 +77,15 @@ export class PerfilXFuncionalidadeComponent implements OnInit, OnChanges {
   }
 
   protected onClickAddLeftFeature(event: Array<string>): void {
+    this.rightFeature = null;
+    this.clearPermissions();
     event.forEach(str => {
       const feature = this.rightFeatures.filter(opt => opt.getOptionId() == str)[0];
       const index = this.rightFeatures.indexOf(feature);
+
+      feature.getActivePermissions().forEach(ap => feature.getInactivePermissions().push(ap));
+      feature.setActivePermissions(new Array<PermissionModel>());
+
       this.rightFeatures.splice(index, 1);
       this.leftFeatures.push(feature);
     });
@@ -112,11 +123,24 @@ export class PerfilXFuncionalidadeComponent implements OnInit, OnChanges {
   }
 
   public onExecute(): void {
+    this.saving = true;
+    const permissionRoles: Array<PermissionRoleModel> = this.getPermissionRoles(this.rightFeatures, true)
+      .concat(this.getPermissionRoles(this.leftFeatures, false));
+    const prePermissionRoles: Array<PrePermissionRoleModel> = this.getPrePermissionRoles(this.rightFeatures, true)
+      .concat(this.getPrePermissionRoles(this.leftFeatures, false));
 
+    this.roleXFeatureService.updateRoleXFeatures(permissionRoles, prePermissionRoles).subscribe({
+      error: () => {
+        this.saving = false;
+      },
+      complete: () => {
+        this.saving = false;
+      }
+    });
   }
 
   public onExit(): void {
-
+    this.router.navigate(['home']);
   }
 
   protected onClickRightFeature(event: string): void {
@@ -143,5 +167,43 @@ export class PerfilXFuncionalidadeComponent implements OnInit, OnChanges {
   private clearPermissions(): void {
     this.leftPermissions = new Array<PermissionModel>();
     this.rightPermissions = new Array<PermissionModel>();
+  }
+
+  private getPermissionRoles(features: Array<FeatureModel>, needToBeCreated: boolean): Array<PermissionRoleModel> {
+    const permissionRoles: Array<PermissionRoleModel> = Array<PermissionRoleModel>();
+
+    features.forEach(rf => {
+      if (!rf.getIdFeature().includes('*')) {
+        const permissions = needToBeCreated ? rf.getActivePermissions() : rf.getInactivePermissions();
+        permissions.forEach(permission => {
+          const permissionRole = new PermissionRoleModel();
+          permissionRole.setIdFeature(rf.getIdFeature().replace('*', ''));
+          permissionRole.setIdRole(this.role.getIdRole());
+          permissionRole.setIdPermission(permission.getIdPermission());
+          permissionRole.setNeedToBeCreated(needToBeCreated);
+          permissionRoles.push(permissionRole);
+        });
+      }
+    });
+    return permissionRoles;
+  }
+
+  private getPrePermissionRoles(features: Array<FeatureModel>, needToBeCreated: boolean): Array<PrePermissionRoleModel> {
+    const prePermissionRoles: Array<PrePermissionRoleModel> = Array<PrePermissionRoleModel>();
+
+    features.forEach(rf => {
+      if (rf.getIdFeature().includes('*')) {
+        const permissions = needToBeCreated ? rf.getActivePermissions() : rf.getInactivePermissions();
+        permissions.forEach(permission => {
+          const prePermissionRole = new PrePermissionRoleModel();
+          prePermissionRole.setIdFeature(rf.getIdFeature().replace('*', ''));
+          prePermissionRole.setIdRole(this.role.getIdRole());
+          prePermissionRole.setIdPermission(permission.getIdPermission());
+          prePermissionRole.setNeedToBeCreated(needToBeCreated);
+          prePermissionRoles.push(prePermissionRole);
+        });
+      }
+    });
+    return prePermissionRoles;
   }
 }
