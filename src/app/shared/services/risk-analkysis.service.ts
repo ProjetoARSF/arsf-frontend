@@ -25,13 +25,13 @@ export class RiskAnalysisService {
         catchError((err) => this.getRolesRisk(appId))
       ).pipe(
         switchMap((last) => {
-          risks.push(new RiskTableModel('Riscos de Função', last))
+          risks.push(new RiskTableModel('Riscos de Perfil', last))
           return this.getGroupsRisk(appId);
         }),
         catchError((err) => this.getGroupsRisk(appId))
       ).pipe(
         switchMap((last) => {
-          risks.push(new RiskTableModel('Riscos de Grupos de Funções', last))
+          risks.push(new RiskTableModel('Riscos de Grupos de Perfil', last))
           return of(risks);
         })
       );
