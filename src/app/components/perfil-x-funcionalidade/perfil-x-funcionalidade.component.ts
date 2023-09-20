@@ -206,4 +206,8 @@ export class PerfilXFuncionalidadeComponent implements OnInit, OnChanges {
     });
     return prePermissionRoles;
   }
+
+  podeConfirmar(): boolean {
+    return this.rightFeatures.filter(f => f.getActivePermissions().length === 0).length === 0;
+  }
 }

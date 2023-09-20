@@ -1,5 +1,5 @@
 <div class="form-element">
-  <label class="form-element__label" [for]="leftSelectId()">{{label}}</label>
+  <label class="form-element__label" [for]="leftSelectId()">{{label}} Disponíveis </label>
   <select #leftOptionsRef [id]="leftSelectId()" [name]="leftSelectId()" class="form-element__select" multiple size="10"
     [disabled]="disabled">
     <option *ngFor="let option of leftOptions; let i = index" [ngValue]="option">
@@ -18,7 +18,7 @@
 </div>
 
 <div class="form-element">
-  <label class="form-element__label" [for]="rightSelectId()">{{label}}</label>
+  <label class="form-element__label" [for]="rightSelectId()">{{label}} Selecionadas </label>
   <select #rightOptionsRef [id]="rightSelectId()" [name]="rightSelectId()" class="form-element__select" multiple
     size="10" [disabled]="disabled">
     <option *ngFor="let option of rightOptions; let i = index" [ngValue]="option"

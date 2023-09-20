@@ -29,6 +29,7 @@
           [rightOptions]="rightFeatures" [disabled]="!role || saving" (clickAddLeftEvent)="onClickAddLeftFeature($event)"
           (clickAddRightEvent)="onClickAddRightFeature($event)"
           (clickRightOptionEvent)="onClickRightFeature($event)"></app-dual-select>
+          <span> * = Necessita de Aprovação </span>
       </div>
       <div class="dual-selects__single">
         <app-dual-select id="permissions" label="Permissões" [leftOptions]="leftPermissions"
@@ -39,7 +40,7 @@
     </div>
 
     <div class="role-x-function__buttons">
-      <button #confirmButton class="button button--black" type="button" (click)="onExecute()" [disabled]="saving">Confirmar</button>
+      <button #confirmButton class="button button--black" type="button" (click)="onExecute()" [disabled]="saving ||!podeConfirmar()">Confirmar</button>
       <button class="button button--black" type="button" (click)="onExit()" [disabled]="saving">Sair</button>
     </div>
   </form>
